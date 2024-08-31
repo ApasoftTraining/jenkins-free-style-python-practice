@@ -1,14 +1,24 @@
+import sys
+
 def fahrenheit_to_celsius(fahrenheit):
-    celsius = (fahrenheit - 32) * 5.0/9.0
-    return celsius
+    return (fahrenheit - 32) * 5.0/9.0
 
 if __name__ == "__main__":
-    # Ask the user to input the temperature in Fahrenheit
-    fahrenheit = float(input("Enter the temperature in Fahrenheit: "))
-    
-    # Convert the temperature to Celsius
+    if len(sys.argv) != 2:
+        print("Usage: python3 fahrenheit_to_celsius.py <temperature_in_fahrenheit>")
+        sys.exit(1)
+
+    # Convert the argument to a float
+    try:
+        fahrenheit = float(sys.argv[1])
+    except ValueError:
+        print("Please provide a valid number for the temperature in Fahrenheit.")
+        sys.exit(1)
+
+    # Convert to Celsius
     celsius = fahrenheit_to_celsius(fahrenheit)
     
     # Display the result
     print(f"{fahrenheit} degrees Fahrenheit is {celsius:.2f} degrees Celsius.")
+
 
